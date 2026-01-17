@@ -1,0 +1,107 @@
+ESP32-WROOM PINOUT DIAGRAM
+==========================
+
+Project: nRF_Jammer_v3
+
+
+                    +----------------------+
+                    |      ESP32-WROOM     |
+                    |                      |
+        GPIO 14 ---- | SCK   (nRF1,nRF2)   |
+        GPIO 18 ---- | SCK   (nRF3,nRF4)   |
+        GPIO 13 ---- | MOSI  (nRF1,nRF2)   |
+        GPIO 23 ---- | MOSI  (nRF3,nRF4)   |
+        GPIO 12 ---- | MISO  (nRF1,nRF2)   |
+        GPIO 19 ---- | MISO  (nRF3,nRF4)   |
+                    |                      |
+        GPIO 26 ---- | CE   nRF1           |
+        GPIO 15 ---- | CSN  nRF1           |
+        GPIO 27 ---- | CE   nRF2           |
+        GPIO 25 ---- | CSN  nRF2           |
+        GPIO  4 ---- | CE   nRF3           |
+        GPIO  2 ---- | CSN  nRF3           |
+        GPIO 16 ---- | CE   nRF4           |
+        GPIO 17 ---- | CSN  nRF4           |
+                    |                      |
+        GPIO 21 ---- | SDA  (OLED I2C)     |
+        GPIO 22 ---- | SCL  (OLED I2C)     |
+                    |                      |
+        GPIO 33 ---- | BTN  LEFT           |
+        GPIO 32 ---- | BTN  RIGHT          |
+        GPIO  5 ---- | BTN  SELECT         |
+                    |                      |
+        GPIO 34 ---- | BATTERY ADC         |
+                    | (via 100k/100k div) |
+                    |                      |
+                    +----------------------+
+
+
+nRF24 MODULE CONNECTIONS
+------------------------
+
+nRF1:
+  SCK  -> GPIO 14
+  MOSI -> GPIO 13
+  MISO -> GPIO 12
+  CE   -> GPIO 26
+  CSN  -> GPIO 15
+
+nRF2:
+  SCK  -> GPIO 14
+  MOSI -> GPIO 13
+  MISO -> GPIO 12
+  CE   -> GPIO 27
+  CSN  -> GPIO 25
+
+nRF3:
+  SCK  -> GPIO 18
+  MOSI -> GPIO 23
+  MISO -> GPIO 19
+  CE   -> GPIO 4
+  CSN  -> GPIO 2
+
+nRF4:
+  SCK  -> GPIO 18
+  MOSI -> GPIO 23
+  MISO -> GPIO 19
+  CE   -> GPIO 16
+  CSN  -> GPIO 17
+
+
+OLED DISPLAY (I2C)
+-----------------
+SDA -> GPIO 21
+SCL -> GPIO 22
+
+
+BUTTONS
+-------
+LEFT   -> GPIO 33
+RIGHT  -> GPIO 32
+SELECT -> GPIO 5
+
+
+POWER / ADC
+-----------
+Battery voltage divider -> GPIO 34 (ADC input only)
+
+R1 = 100K
+R2 = 100K
+
+Battery + ---- R1 ----+----> ADC (GPIO 34)
+                      |
+                      R2
+                      |
+                    GND
+
+
+NOTES
+-----
+- GPIO 34 is input-only (ADC safe).
+- Optional 4.7kΩ pull-ups may be used on I2C lines.
+- Ensure proper decoupling for RF modules.
+- Review ESP32 boot pin restrictions before modifying wiring.
+
+
+Author: Nataniel Weremczuk
+TikTok: @EvilESP

@@ -1,0 +1,111 @@
+POWER SUPPLY AND BATTERY VOLTAGE MEASUREMENT
+============================================
+
+Project: nRF_Jammer_v3
+
+
+BATTERY VOLTAGE DIVIDER (ADC MEASUREMENT)
+-----------------------------------------
+
+           +3.7V (Li-ion Battery +)
+               |
+               |
+              R1
+             100kΩ
+               |
+               |-----> ESP32 ADC (GPIO 34)
+               |
+              R2
+             100kΩ
+               |
+               |
+              GND
+
+
+Description:
+------------
+- R1 and R2 form a voltage divider for battery voltage measurement.
+- The ADC input sees half of the battery voltage.
+- For a fully charged Li-ion battery (~4.2V), ADC voltage ≈ 2.1V.
+- This is within the safe operating range of the ESP32 ADC (max ~3.3V).
+- Current draw of the divider is very low (<25µA).
+
+Optional:
+---------
+- A small capacitor (e.g. 0.1µF) can be added between ADC and GND
+  to stabilize readings and reduce noise.
+
+
+nRF24 MODULE POWER SUPPLY NOTES
+-------------------------------
+
+IMPORTANT DIFFERENCE BETWEEN MODULES:
+
+- nRF24E01:
+  * Can be powered directly from the Li-ion battery (3.0V–4.2V).
+  * No external 3.3V regulator is strictly required.
+  * Local decoupling capacitors are still REQUIRED.
+
+- nRF24L01:
+  * MUST be powered from a stable 3.3V supply.
+  * Direct connection to a Li-ion battery WILL DAMAGE the module.
+  * A dedicated 3.3V voltage regulator is REQUIRED.
+
+
+DECOUPLING CAPACITORS (MANDATORY)
+--------------------------------
+Each nRF24 module should have capacitors placed as close as possible
+to its power pins to ensure stable operation.
+
+Recommended values:
+- 100nF (0.1µF) ceramic capacitor
+- 4.7µF – 10µF electrolytic or ceramic capacitor
+
+
+POWER SUPPLY SCHEMATIC (ASCII)
+------------------------------
+
+           Li-ion Battery (3.7V)
+                 +
+                 |
+                 +-----------------------> nRF24E01 VCC
+                 |                           (direct battery power)
+                 |
+                 |        +------------------+
+                 |        |  3.3V REGULATOR  |
+                 |        |  (LDO or DC-DC)  |
+                 |        +------------------+
+                 |                 |
+                 |                 +--------> 3.3V rail
+                 |                               |
+                 |                               +--> ESP32 VCC
+                 |                               |
+                 |                               +--> nRF24L01 VCC
+                 |
+                GND----------------------------- GND (common ground)
+
+
+DECOUPLING (EXAMPLE FOR ONE MODULE)
+----------------------------------
+
+3.3V or Battery VCC ----+----> nRF24 VCC
+                        |
+                       100nF
+                        |
+                       GND
+
+(Optionally add 4.7µF–10µF in parallel)
+
+
+NOTES
+-----
+- All grounds (battery, ESP32, nRF modules) MUST be connected together.
+- Place capacitors as close as possible to the nRF24 power pins.
+- Poor decoupling may cause unstable RF behavior or module resets.
+- Never connect nRF24L01 directly to battery voltage.
+
+
+AUTHOR
+------
+Nataniel Weremczuk
+TikTok: @EvilESP

@@ -1,0 +1,39 @@
+BATTERY VOLTAGE DIVIDER
+=======================
+
+Project: nRF_Jammer_v3
+Purpose: Measure 3.7V Li-ion battery voltage with ESP32 ADC
+
+           +3.7V (Battery +)
+               |
+               |
+              R1
+             100kΩ
+               |
+               |-----> To ESP32 ADC (GPIO 34)
+               |
+              R2
+             100kΩ
+               |
+               |
+              GND
+
+Explanation:
+------------
+- R1 and R2 form a simple resistor voltage divider.
+- With R1 = R2 = 100kΩ, the output voltage at the midpoint (ADC input) is half of the battery voltage.
+- For a 3.7V battery, ADC sees ~1.85V max.
+- ESP32 ADC max voltage ~3.3V, so this is safe.
+- The resistors also limit current draw to <20µA, reducing battery drain.
+
+Calculation:
+------------
+Vout = Vin * (R2 / (R1 + R2))
+Vout = 3.7V * (100k / (100k + 100k)) = 3.7V * 0.5 ≈ 1.85V
+
+Notes:
+------
+- Use precise resistors (1% tolerance) for better voltage readings.
+- Optional: add a small capacitor (~0.1µF) between ADC input and GND to smooth readings.
+- Do NOT connect battery directly to ADC pin — it will damage the ESP32.
+- Ensure ESP32 GND is connected to battery GND.
