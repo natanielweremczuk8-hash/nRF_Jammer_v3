@@ -27,6 +27,7 @@ What has changed in version v3.0.1 compared to v3?
 - Added support for expanding with additional nRF modules via I2C on ESP32 (TX implemented, RX still in progress).
 - Improved jamming range.
 - Improved SPI line stability.
+- Improved battery voltage measurement—now shows accurate values.
 
 KEY FEATURES
 ------------
@@ -134,5 +135,6 @@ as an original work created by someone else.
 
 Rebranding, removing author information, or impersonating the original
 author is strictly prohibited.
+
 
 
