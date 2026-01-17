@@ -1,0 +1,17 @@
+NOTICE
+------
+
+Project: nRF_Jammer_v3
+
+Copyright (c) 2026
+Author: Nataniel Weremczuk
+TikTok: @EvilESP
+
+This project is licensed under the Apache License, Version 2.0.
+
+You may use, modify, and distribute this project, including for
+commercial purposes, provided that proper attribution to the original
+author and project name is maintained.
+
+Impersonation of the author, removal of attribution, or claiming
+authorship of this project is strictly prohibited.
