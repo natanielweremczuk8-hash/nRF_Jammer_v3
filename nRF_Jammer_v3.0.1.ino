@@ -14,7 +14,6 @@
 #define maxVoltage   4.2 // max battery voltage
 #define minVoltage   3.3 // minimal batery voltage
 #define DataRate     0   // 0=250KBPS 1=1MBPS 2=2MBPS
-#define name         "   EvilESP" // user name
 
 // ======================= BUTTON PINS ====================
 #define BTN_LEFT   33
@@ -126,7 +125,7 @@ void setup() {
     u8g2.drawHLine(0, 15, 128);
 
     u8g2.setFont(u8g2_font_6x12_tr);
-    u8g2.drawStr(2, 12, "V3.0.0");
+    u8g2.drawStr(2, 12, "V3.0.1");
 
     u8g2.setFont(u8g2_font_t0_14b_tr);
     u8g2.drawStr(27, 30, "nRF_Jammer");
@@ -228,7 +227,7 @@ u8g2.setBitmapMode(1);
 u8g2.drawHLine(-1, 15, 128);
 
 u8g2.setFont(u8g2_font_6x12_tr);
-u8g2.drawStr(2, 12, "V3.0.0");
+u8g2.drawStr(2, 12, "V3.0.1");
 
 u8g2.setFont(u8g2_font_4x6_tr);
 u8g2.drawStr(86, 63, "By EvilESP");
