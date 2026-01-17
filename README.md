@@ -21,6 +21,12 @@ This project is intended for educational and experimental use only.
 Usage of RF jamming or interference may be illegal in many countries.
 The author does not take responsibility for any misuse of this project.
 
+What has changed in version v3.0.1 compared to v3?
+-----------
+- Improved the UI interface (cleaner and more intuitive).
+- Added support for expanding with additional nRF modules via I2C on ESP32 (TX implemented, RX still in progress).
+- Improved jamming range.
+- Improved SPI line stability.
 
 KEY FEATURES
 ------------
@@ -31,9 +37,10 @@ KEY FEATURES
 - Battery-powered (18650 Li‑ion)
 - Battery voltage monitoring
 - Modular and expandable design
+- Possibility to expand with additional NRF modules via I2C (work in progress: transmission over I2C is already implemented,      only reception on the second ESP32 remains).
 
-Thanks to the use of four nRF24 modules, the device achieves significantly
-improved RF coverage compared to single-module designs.
+  Thanks to the use of four nRF24 modules, the device achieves significantly
+  improved RF coverage compared to single-module designs.
 
 
 HARDWARE COMPONENTS
@@ -85,7 +92,6 @@ Battery ADC -> ESP32 pin 34
 
 PLANNED FEATURES / ROADMAP
 --------------------------
-- Expansion support for additional nRF modules via UART and extra ESP32
 - 2.4 GHz spectrum scanning
 - Sleep mode (to remove the need for a power switch, under consideration)
 - Improved battery voltage measurement accuracy
@@ -128,4 +134,5 @@ as an original work created by someone else.
 
 Rebranding, removing author information, or impersonating the original
 author is strictly prohibited.
+
 
