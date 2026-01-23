@@ -254,11 +254,6 @@ u8g2.drawLine(3, 35, 9, 41);
 
 u8g2.sendBuffer();
 
-
-  // -------- Footer --------
-  u8g2.setFont(u8g2_font_4x6_tr);
-  u8g2.drawStr(86, 63, name);
-
   // -------- NRF status dots --------
   if (nRF1) u8g2.drawEllipse(52, 8, 3, 3);
   if (nRF3) u8g2.drawEllipse(62, 8, 3, 3);
